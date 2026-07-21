@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher Eballo · Web Developer & Designer</title>
+  <meta name="description" content="Portfolio of Christopher Eballo — Web Developer, UI Designer & Software Engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/BLACK LOGO.png" type="image/jpeg">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- ═══ SCROLL PROGRESS ═══ -->
+  <div id="sprog"></div>
+
+  <!-- ═══ LOADER ═══ -->
+  <div id="loader">
+    <div class="ld-logo-wrap">
+      <div class="ld-logo-ring"></div>
+      <div class="ld-logo-ring2"></div>
+      <img class="ld-logo-img" src="images/BLACK LOGO.png" alt="CE" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div style="display:none;width:70px;height:70px;border-radius:50%;background:rgba(250, 247, 247, 0.05);align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:rgba(255,255,255,0.8);border:1.5px solid rgba(255,255,255,0.1);opacity:0;animation:ldLogoIn 0.6s 0.2s var(--ease-spring) forwards">CE</div>
+    </div>
+    <div class="ld-name">Christopher Eballo</div>
+    <div class="ld-bar-track"><div class="ld-bar-fill" id="ld-fill"></div></div>
+    <div class="ld-pct" id="ld-pct">0%</div>
+  </div>
+
+  <!-- ═══ MOBILE NAV ═══ -->
+  <div class="mob-nav" id="mob-nav">
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav">
+    <div class="nav-logo">
+      <img class="nav-logo-img" src="images/BLACK LOGO.png" alt="CE Logo" onerror="this.style.display='none'">
+      <span class="nav-logo-text"></span>
+    </div>
+    <div class="nav-center">
+      <a href="#hero" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-avail"><span class="nav-avail-dot"></span>Available for Work</div>
+      <button class="nav-theme" id="theme-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="nav-hire" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+      <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <canvas id="bg-canvas" style="position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0.2;width:100%;height:100%"></canvas>
+    <div class="hero-noise"></div>
+    <div class="hero-inner">
+      
+      <h1 class="hero-name">Christopher Eballo</h1>
+      <div class="hero-role">
+        <span class="hero-role-pre">I build</span>
+        <span class="hero-role-typed" id="typed"></span>
+        <span class="hero-cursor"></span>
+      </div>
+      <p class="hero-desc">Building premium digital experiences from the Philippines. Clean code, thoughtful design, real results.</p>
+      <div class="hero-btns">
+        <button class="btn btn-w" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"><i class="fas fa-folder-open"></i> View Work</button>
+        <button class="btn btn-o" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-paper-plane"></i> Get in Touch</button>
+        <a href="images/EBALLO_FINAL_REESUME.pdf" download class="btn btn-o"><i class="fas fa-download"></i> Resume</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/EballoDev" target="_blank"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/christopher-eballo-26360a3a3/" target="_blank"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://www.facebook.com/ichirozukiiii" target="_blank"><i class="bx bxl-facebook"></i></a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="hero-scroll-line"></div>
+      <span class="hero-scroll-txt">scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+<div class="marquee-section">
+  <div class="marquee-track" id="mtrack">
+
+    <div class="m-item"><i class="fab fa-html5"></i>HTML5</div>
+    <div class="m-item"><i class="fab fa-css3-alt"></i>CSS3</div>
+    <div class="m-item"><i class="fab fa-js"></i>JavaScript</div>
+    <div class="m-item"><i class="fab fa-php"></i>PHP</div>
+    <div class="m-item"><i class="fas fa-database"></i>MySQL</div>
+    <div class="m-item"><i class="fab fa-java"></i>Java</div>
+    <div class="m-item"><i class="fas fa-code"></i>C Programming</div>
+    <div class="m-item"><i class="fab fa-figma"></i>C ++</div>
+    <div class="m-item"><i class="fab fa-git-alt"></i>Git</div>
+    <div class="m-item"><i class="fab fa-github"></i>GitHub</div>
+    <div class="m-item"><i class="fas fa-chart-line"></i>Data Analysis</div>
+    <div class="m-item"><i class="fas fa-desktop"></i>Java Swing</div>
+    <div class="m-item"><i class="fas fa-palette"></i>UI/UX Design</div>
+    <div class="m-item"><i class="fas fa-laptop-code"></i>System Development</div>
+    <div class="m-item"><i class="fas fa-globe"></i>Responsive Design</div>
+    <div class="m-item"><i class="fas fa-brain"></i>AI Integration</div>
+
+    <!-- Duplicate for seamless loop -->
+
+    <div class="m-item"><i class="fab fa-html5"></i>HTML5</div>
+    <div class="m-item"><i class="fab fa-css3-alt"></i>CSS3</div>
+    <div class="m-item"><i class="fab fa-js"></i>JavaScript</div>
+    <div class="m-item"><i class="fab fa-php"></i>PHP</div>
+    <div class="m-item"><i class="fas fa-database"></i>MySQL</div>
+    <div class="m-item"><i class="fab fa-java"></i>Java</div>
+    <div class="m-item"><i class="fas fa-code"></i>C Programming</div>
+    <div class="m-item"><i class="fab fa-figma"></i>C ++</div>
+    <div class="m-item"><i class="fab fa-git-alt"></i>Git</div>
+    <div class="m-item"><i class="fab fa-github"></i>GitHub</div>
+    <div class="m-item"><i class="fas fa-chart-line"></i>Data Analysis</div>
+    <div class="m-item"><i class="fas fa-desktop"></i>Java Swing</div>
+    <div class="m-item"><i class="fas fa-palette"></i>UI/UX Design</div>
+    <div class="m-item"><i class="fas fa-laptop-code"></i>System Development</div>
+    <div class="m-item"><i class="fas fa-globe"></i>Responsive Design</div>
+    <div class="m-item"><i class="fas fa-brain"></i>AI Integration</div>
+
+  </div>
+</div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="about-wrap">
+      <div class="rv-l">
+        <div class="about-img-shell">
+          <img src="images/PROFILE.png" alt="Christopher Eballo" onerror="this.parentElement.style.background='rgba(255,255,255,0.03)'">
+          <div class="about-img-gloss"></div>
+        </div>
+        <div class="about-stats-row">
+          <div class="astat"><span class="astat-num" data-count="17">0</span><span class="astat-label">Projects</span></div>
+          <div class="astat"><span class="astat-num" data-count="7">0</span><span class="astat-label">Technologies</span></div>
+          <div class="astat"><span class="astat-num" data-count="3">0</span><span class="astat-label">Awards</span></div>
+          <div class="astat"><span class="astat-num" data-count="100">0</span><span class="astat-label">% Satisfaction</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="rv">
+          <span class="s-label">Get to know me</span>
+          <h2 class="s-title">About <em>Me</em></h2>
+          <div class="s-line"></div>
+        </div>
+        <p class="about-text rv" data-d="1">
+  Hi, I'm <strong>Christopher Eballo</strong> a passionate <strong>Front-End Web Developer, System Developer, and UI/UX Designer</strong> from the Philippines. I specialize in building modern, responsive, and user-focused digital solutions that combine clean design with efficient functionality.
+</p>
+<p class="about-text rv" data-d="2">
+   <strong></strong>I continuously expand my expertise through hands-on projects, including management systems, web applications, desktop software, and database-driven solutions. My goal is to develop innovative, scalable, and high-performance applications that solve real-world problems while delivering exceptional user experiences.
+</p>
+        <div class="info-tiles">
+          <div class="itile rv" data-d="3"><div class="itile-icon"><i class="fas fa-graduation-cap"></i></div><h4>Education</h4><ul><li>Informatics College Northgate</li><li>ICT Programming 2023–2025</li><li>Bachelor of Science in Information Technology 2025–2028</li></ul></div>
+          <div class="itile rv" data-d="4"><div class="itile-icon"><i class="fas fa-trophy"></i></div><h4>Achievements</h4><ul><li>Best in System Creator</li><li>Best in Web Development</li><li>Best System Integration</li></ul></div>
+          <div class="itile rv" data-d="5"><div class="itile-icon"><i class="fas fa-map-marker-alt"></i></div><h4>Location</h4><p>Metro Manila, Philippines<br>Location-friendly worldwide</p></div>
+          <div class="itile rv" data-d="6"><div class="itile-icon"><i class="fas fa-heart"></i></div><h4>Interests</h4><ul><li>UI/UX Design</li><li>Open Source</li><li>AI Artificial Intelligence</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section id="skills">
+    <div class="rv" style="margin-bottom:56px">
+      <span class="s-label">My Expertise</span>
+      <h2 class="s-title">Skills & <em>Technologies</em></h2>
+      <div class="s-line"></div>
+      <p class="s-sub">A toolkit built through hands-on projects, coursework, and self-study.</p>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-panel rv">
+        <div class="skill-panel-title"><i class="fas fa-code"></i> Programming Languages</div>
+        <div id="skill-bars">
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">HTML / CSS</span><span class="sk-bar-pct">90%</span></div><div class="sk-track"><div class="sk-fill" data-w="90"></div></div></div>
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">JavaScript</span><span class="sk-bar-pct">80%</span></div><div class="sk-track"><div class="sk-fill" data-w="80"></div></div></div>
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">PHP</span><span class="sk-bar-pct">70%</span></div><div class="sk-track"><div class="sk-fill" data-w="70"></div></div></div>
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">SQL / MySQL</span><span class="sk-bar-pct">65%</span></div><div class="sk-track"><div class="sk-fill" data-w="65"></div></div></div>
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">Java</span><span class="sk-bar-pct">60%</span></div><div class="sk-track"><div class="sk-fill" data-w="60"></div></div></div>
+          <div class="sk-bar"><div class="sk-bar-head"><span class="sk-bar-name">C / C++</span><span class="sk-bar-pct">55%</span></div><div class="sk-track"><div class="sk-fill" data-w="55"></div></div></div>
+        </div>
+        <div style="margin-top:22px">
+          <div class="skill-panel-title" style="margin-bottom:12px"><i class="fas fa-layer-group"></i> Frameworks & Tools</div>
+          <div class="tag-cloud">
+            <div class="tag"><i class="fab fa-react"></i>Visual Studio Code</div>
+            <div class="tag"><i class="fab fa-vuejs"></i> AI Tools Assistant</div>
+            <div class="tag"><i class="fas fa-leaf"></i> NetBeans IDE</div>
+             <div class="tag"><i class="fab fa-python"></i>PHPMyAdmin</div>
+            <div class="tag"><i class="fab fa-node-js"></i> Chart.js</div>
+            <div class="tag"><i class="fas fa-fire"></i>GitHubs</div>
+            <div class="tag"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="tag"><i class="fab fa-linux"></i> Dev C ++</div>
+            <div class="tag"><i class="fab fa-python"></i>MySQL</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-panel rv" style="margin-bottom:16px">
+          <div class="skill-panel-title"><i class="fas fa-chart-radar"></i> Skill Overview</div>
+          <canvas id="radar-chart" height="240"></canvas>
+        </div>
+        <div class="skill-panel rv">
+          <div class="skill-panel-title"><i class="fab fa-figma"></i> Design Tools</div>
+          <div class="tag-cloud">
+            <div class="tag"><i class="fab fa-figma"></i> Universe.io</div>
+            <div class="tag"><i class="fab fa-adobe"></i> UI Design</div>
+            <div class="tag"><i class="fab fa-adobe"></i> Prototyping</div>
+            <div class="tag"><i class="fas fa-magic"></i> Canva</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <div class="rv" style="margin-bottom:52px">
+      <span class="s-label">My Work</span>
+      <h2 class="s-title">Featured <em>Projects</em></h2>
+      <div class="s-line"></div>
+      <p class="s-sub">Eight projects spanning e-commerce, AI, luxury brands, and more.</p>
+    </div>
+    <div class="proj-wrap">
+      <div class="proj-slides" id="proj-slides"></div>
+      <div class="proj-controls">
+        <div class="proj-dots" id="proj-dots"></div>
+        <div class="proj-count"><span id="pc-cur">01</span> / <span id="pc-tot">08</span></div>
+        <div class="proj-nav">
+          <button id="p-prev"><i class="fas fa-chevron-left"></i></button>
+          <button id="p-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- ═══ SERVICES ═══ -->
+<section id="services">
+  <div class="rv" style="margin-bottom:52px;text-align:center">
+    <span class="s-label">What I Offer</span>
+    <h2 class="s-title">My <em>Services</em></h2>
+    <div class="s-line" style="margin:18px auto"></div>
+  </div>
+
+  <div class="svc-grid">
+
+    <div class="svc-card rv" data-d="1">
+      <div class="svc-icon"><i class="fas fa-code"></i></div>
+      <div class="svc-title">Frontend Web Development</div>
+      <p class="svc-desc">
+        Creating responsive, modern, and interactive websites using HTML, CSS, JavaScript, and Bootstrap.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="2">
+      <div class="svc-icon"><i class="fas fa-server"></i></div>
+      <div class="svc-title">Backend Development</div>
+      <p class="svc-desc">
+        Developing secure backend systems with PHP, MySQL, authentication, CRUD operations, and local storage integration.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="3">
+      <div class="svc-icon"><i class="fas fa-laptop-code"></i></div>
+      <div class="svc-title">System Development</div>
+      <p class="svc-desc">
+        Building complete management systems including Library Management, Voting Systems, Student Portals, and POS applications.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="4">
+      <div class="svc-icon"><i class="fas fa-database"></i></div>
+      <div class="svc-title">Database Management</div>
+      <p class="svc-desc">
+        Designing efficient MySQL databases, optimizing queries, and managing structured data for scalable applications.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="5">
+      <div class="svc-icon"><i class="fas fa-desktop"></i></div>
+      <div class="svc-title">Java Desktop Applications</div>
+      <p class="svc-desc">
+        Developing Java Swing desktop applications including POS systems with user authentication, inventory, and receipt generation.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="6">
+      <div class="svc-icon"><i class="fas fa-mobile-alt"></i></div>
+      <div class="svc-title">Responsive UI/UX Design</div>
+      <p class="svc-desc">
+        Designing clean, user-friendly interfaces that provide seamless experiences across desktop, tablet, and mobile devices.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="7">
+      <div class="svc-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="svc-title">Data Analysis & Reporting</div>
+      <p class="svc-desc">
+        Transforming data into meaningful insights using SQL, reports, dashboards, and data visualization techniques.
+      </p>
+    </div>
+
+    <div class="svc-card rv" data-d="8">
+      <div class="svc-icon"><i class="fas fa-rocket"></i></div>
+      <div class="svc-title">Portfolio & Website Optimization</div>
+      <p class="svc-desc">
+        Optimizing website performance, animations, accessibility, SEO, and overall user experience for modern web projects.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <!-- ═══ STATS ═══ -->
+  <section id="stats">
+    <div class="stats-row">
+      <div class="stat-box rv"><span class="stat-num" data-count="17">0</span><div class="stat-lbl">Projects Completed</div></div>
+      <div class="stat-box rv" data-d="1"><span class="stat-num" data-count="7">0</span><div class="stat-lbl">Technologies Mastered</div></div>
+      <div class="stat-box rv" data-d="2"><span class="stat-num" data-count="500">0</span><div class="stat-lbl">K+ Lines of Code</div></div>
+      <div class="stat-box rv" data-d="3"><span class="stat-num" data-count="100">0</span><div class="stat-lbl">% Client Satisfaction</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ CERTS ═══ -->
+  <section id="certs">
+    <div class="rv" style="margin-bottom:52px;text-align:center">
+      <span class="s-label">Recognition</span>
+      <h2 class="s-title">Certificates & <em>Awards</em></h2>
+      <div class="s-line" style="margin:18px auto"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card rv" data-d="1"><div class="cert-ico"><i class="fas fa-trophy"></i></div><div class="cert-title">Best in System Creator</div><div class="cert-by">Informatics College Northgate</div></div>
+      <div class="cert-card rv" data-d="2"><div class="cert-ico"><i class="fas fa-globe"></i></div><div class="cert-title">Best in Web Development</div><div class="cert-by">Informatics College Northgate</div></div>
+      <div class="cert-card rv" data-d="3"><div class="cert-ico"><i class="fas fa-medal"></i></div><div class="cert-title">Best System Integration</div><div class="cert-by">Informatics College Northgate</div></div>
+      <div class="cert-card rv" data-d="4"><div class="cert-ico"><i class="fab fa-html5"></i></div><div class="cert-title">HTML5 & CSS3 Mastery</div><div class="cert-by">Project-Based Proficiency</div></div>
+      <div class="cert-card rv" data-d="5"><div class="cert-ico"><i class="fab fa-js"></i></div><div class="cert-title">JavaScript Development</div><div class="cert-by">Self-Directed Learning</div></div>
+      <div class="cert-card rv" data-d="6"><div class="cert-ico"><i class="fas fa-database"></i></div><div class="cert-title">Database Management</div><div class="cert-by">SQL & MySQL Proficiency</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <div class="rv" style="margin-bottom:52px">
+      <span class="s-label">Let's Connect</span>
+      <h2 class="s-title">Get in <em>Touch</em></h2>
+      <div class="s-line"></div>
+      <p class="s-sub">Have a project in mind? Let's build something remarkable together.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-links rv-l">
+        <a class="c-link" href="mailto:tophereballo13@gmail.com"><div class="c-icon"><i class="fas fa-envelope"></i></div><div><div class="c-lbl">Email</div><div class="c-val">tophereballo13@gmail.com</div></div></a>
+        <a class="c-link" href="tel:+639602558385"><div class="c-icon"><i class="fas fa-phone"></i></div><div><div class="c-lbl">Phone</div><div class="c-val">+63 960 255 8385</div></div></a>
+        <div class="c-link"><div class="c-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="c-lbl">Location</div><div class="c-val">Manila, Philippines</div></div></div>
+        <a class="c-link" href="https://www.linkedin.com/in/christopher-eballo-26360a3a3/" target="_blank"><div class="c-icon"><i class="fab fa-linkedin"></i></div><div><div class="c-lbl">LinkedIn</div><div class="c-val">christopher-eballo</div></div></a>
+        <a class="c-link" href="https://github.com/EballoDev" target="_blank"><div class="c-icon"><i class="fab fa-github"></i></div><div><div class="c-lbl">GitHub</div><div class="c-val">EballoDev</div></div></a>
+      </div>
+      <div class="cf-wrap rv-r">
+        <form id="cf" novalidate>
+          <div class="cf-row">
+            <div class="fg"><label>Name</label><input type="text" id="cf-n" placeholder="Your name" required></div>
+            <div class="fg"><label>Email</label><input type="email" id="cf-e" placeholder="you@email.com" required></div>
+          </div>
+          <div class="fg"><label>Subject</label><input type="text" id="cf-s" placeholder="Project inquiry"></div>
+          <div class="fg"><label>Message</label><textarea id="cf-m" placeholder="Tell me about your project..." required></textarea></div>
+          <button type="submit" class="btn btn-w" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> <span id="cf-btxt">Send Message</span></button>
+          <div id="cf-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="ft-brand"><img class="ft-logo" src="images/BLACK LOGO.png" alt="BLACK" onerror="this.style.display='none'"><span class="ft-name">Christopher Eballo</span></div>
+    <div class="ft-copy"></div>
+    <div class="ft-soc">
+      <a href="https://github.com/EballoDev" target="_blank"><i class="bx bxl-github"></i></a>
+      <a href="https://www.linkedin.com/in/christopher-eballo-26360a3a3/" target="_blank"><i class="bx bxl-linkedin"></i></a>
+      <a href="https://www.facebook.com/ichirozukiiii" target="_blank"><i class="bx bxl-facebook"></i></a>
+    </div>
+  </footer>
+
+  <button id="btt"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- ═══ AI CHATBOT ═══ -->
+  <div id="ai-bot">
+    <div class="ai-panel" id="ai-panel">
+    <div class="ai-head"><div class="ai-head-left"><div class="ai-ava"><video id="aiVideo" src="videos/video ao.mp4" autoplay muted loop playsinline></video></div><div><h4>CE Assistant</h4><p>● Online · Ask me anything</p></div></div><button class="ai-x" id="ai-x" onclick="const v=document.getElementById('aiVideo');v.pause();v.currentTime=0;v.muted=true;"><i class="fas fa-times"></i></button></div>
+
+<style>.ai-ava{width:48px;height:48px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}.ai-ava video{width:100%;height:100%;object-fit:cover;display:block;border:none}</style>
+
+<script>document.getElementById('ai-btn')?.addEventListener('click',()=>{const v=document.getElementById('aiVideo');v.play();v.muted=false});</script>
+      <div class="ai-msgs" id="ai-msgs">
+        <div class="ai-m bot">Hey! 👋 I'm Christopher's assistant. Ask me about his skills, projects, or how to hire him!</div>
+      </div>
+      <div class="ai-inp"><input type="text" id="ai-in" placeholder="Ask me anything..."><button class="ai-send" id="ai-snd"><i class="fas fa-arrow-up"></i></button></div>
+    </div>
+   <div class="ai-bubble" id="ai-btn"><span class="ai-face"><video src="videos/video ao.mp4" autoplay muted loop playsinline></video></span><span class="ai-badge">?</span><div class="ai-tooltip">Chat with CE Assistant</div></div>
+<style>.ai-face{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}.ai-face video{width:100%;height:100%;object-fit:cover;display:block;border:none}</style>
+  </div>
+
+   <script src="script.js">
+   </script>
+</body>
+</html>
