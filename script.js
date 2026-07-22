@@ -1,8 +1,25 @@
- // ============================================================
-      //  FULL SCRIPT — AI assistant, timeline, projects, animations, etc.
-      // ============================================================
+  // ================================================================
+      //  EMAILJS CONFIG
+      // ================================================================
+      const EMAILJS = {
+        publicKey: "zo3g6F2PlGBnyW-Ml",
+        serviceId: "service_6vfw3iy",
+        templateId: "template_ufcwq12",
+      };
 
-      // ─── LOADER ───
+      // Initialize EmailJS
+      (function initEmailJS() {
+        try {
+          emailjs.init(EMAILJS.publicKey);
+          console.log(" EmailJS initialized");
+        } catch (e) {
+          console.warn(" EmailJS init error:", e);
+        }
+      })();
+
+      // ================================================================
+      //  LOADER
+      // ================================================================
       (function loader() {
         const el = document.getElementById("loader");
         const fill = document.getElementById("ld-fill");
@@ -20,7 +37,9 @@
         }, 120);
       })();
 
-      // ─── SCROLL PROGRESS ───
+      // ================================================================
+      //  SCROLL PROGRESS
+      // ================================================================
       document.addEventListener("scroll", () => {
         const top = window.scrollY;
         const h = document.documentElement.scrollHeight - window.innerHeight;
@@ -29,7 +48,9 @@
           : "0%";
       });
 
-      // ─── THEME ───
+      // ================================================================
+      //  THEME
+      // ================================================================
       const themeBtn = document.getElementById("theme-btn");
       themeBtn.addEventListener("click", () => {
         document.body.classList.toggle("light");
@@ -39,7 +60,9 @@
             : "fas fa-moon";
       });
 
-      // ─── MOBILE NAV ───
+      // ================================================================
+      //  MOBILE NAV
+      // ================================================================
       const ham = document.getElementById("ham");
       const mob = document.getElementById("mob-nav");
       ham.addEventListener("click", () => {
@@ -53,13 +76,17 @@
         });
       });
 
-      // ─── NAV SCROLL ───
+      // ================================================================
+      //  NAV SCROLL
+      // ================================================================
       const nav = document.getElementById("nav");
       document.addEventListener("scroll", () =>
         nav.classList.toggle("scrolled", window.scrollY > 60),
       );
 
-      // ─── NAV LINKS ACTIVE ───
+      // ================================================================
+      //  NAV LINKS ACTIVE
+      // ================================================================
       const navLinks = document.querySelectorAll(".nav-link");
       const sections = [
         "hero",
@@ -84,7 +111,9 @@
         });
       });
 
-      // ─── TYPED TEXT ───
+      // ================================================================
+      //  TYPED TEXT
+      // ================================================================
       (function typed() {
         const el = document.getElementById("typed");
         const words = ["Websites", "Systems", "UI/UX", "Apps", "Experiences"];
@@ -120,7 +149,9 @@
         tick();
       })();
 
-      // ─── REVEAL ON SCROLL ───
+      // ================================================================
+      //  REVEAL ON SCROLL
+      // ================================================================
       (function reveal() {
         const els = document.querySelectorAll(".rv, .rv-l, .rv-r");
         const observer = new IntersectionObserver(
@@ -137,7 +168,9 @@
         els.forEach((el) => observer.observe(el));
       })();
 
-      // ─── STATS COUNTER ───
+      // ================================================================
+      //  STATS COUNTER
+      // ================================================================
       (function countStats() {
         const nums = document.querySelectorAll(".stat-num, .astat-num");
         const observer = new IntersectionObserver(
@@ -168,7 +201,9 @@
         nums.forEach((n) => observer.observe(n));
       })();
 
-      // ─── SKILL BARS ───
+      // ================================================================
+      //  SKILL BARS
+      // ================================================================
       (function skillBars() {
         const fills = document.querySelectorAll(".sk-fill");
         const observer = new IntersectionObserver(
@@ -186,7 +221,9 @@
         fills.forEach((f) => observer.observe(f));
       })();
 
-      // ─── RADAR CHART ───
+      // ================================================================
+      //  RADAR CHART
+      // ================================================================
       (function radar() {
         const ctx = document.getElementById("radar-chart");
         if (!ctx) return;
@@ -232,7 +269,9 @@
         });
       })();
 
-      // ─── PROJECTS ───
+      // ================================================================
+      //  PROJECTS
+      // ================================================================
       (function projects() {
         const data = [
           {
@@ -359,7 +398,6 @@
           });
           cur.textContent = String(idx + 1).padStart(2, "0");
 
-          // Play only the active video
           videoElements.forEach((v, vi) => {
             if (vi === idx) {
               v.play().catch(() => {});
@@ -376,7 +414,6 @@
           .getElementById("p-next")
           .addEventListener("click", () => goTo(idx + 1));
 
-        // Intersection Observer: play when visible
         const slideObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -396,7 +433,6 @@
           .querySelectorAll(".proj-slide")
           .forEach((s) => slideObserver.observe(s));
 
-        // Handle visibility change (tab switching)
         document.addEventListener("visibilitychange", () => {
           if (document.hidden) {
             videoElements.forEach((v) => v.pause());
@@ -406,7 +442,6 @@
           }
         });
 
-        // Handle video errors
         videoElements.forEach((v) => {
           v.addEventListener("error", function () {
             const container = this.closest(".proj-slide-video");
@@ -425,7 +460,9 @@
         goTo(0);
       })();
 
-      // ─── BACK TO TOP ───
+      // ================================================================
+      //  BACK TO TOP
+      // ================================================================
       const btt = document.getElementById("btt");
       document.addEventListener("scroll", () =>
         btt.classList.toggle("show", window.scrollY > 600),
@@ -434,7 +471,9 @@
         window.scrollTo({ top: 0, behavior: "smooth" }),
       );
 
-      // ─── AI CHATBOT ───
+      // ================================================================
+      //  AI CHATBOT
+      // ================================================================
       (function aiBot() {
         const panel = document.getElementById("ai-panel");
         const btn = document.getElementById("ai-btn");
@@ -455,7 +494,7 @@
               "good afternoon",
               "good evening",
             ],
-            a: "Hello there! 👋 I'm Christopher's assistant. How can I help you today?",
+            a: "Hello there!  I'm Christopher's assistant. How can I help you today?",
           },
           {
             q: [
@@ -501,7 +540,7 @@
           },
           {
             q: ["where are you from", "where is christopher from", "location"],
-            a: "I'm based in Metro Manila, Philippines, and I'm open to working with clients worldwide. 🌏",
+            a: "I'm based in Metro Manila, Philippines, and I'm open to working with clients worldwide. ",
           },
           {
             q: [
@@ -909,19 +948,24 @@
         });
       })();
 
-      // ─── CONTACT FORM ───
+      // ================================================================
+      //  CONTACT FORM — "Get in Touch" (EmailJS)
+      // ================================================================
       (function contactForm() {
-        const form = document.getElementById("cf");
-        const status = document.getElementById("cf-status");
-        const btnText = document.getElementById("cf-btxt");
+        const form = document.getElementById("contactForm");
+        const status = document.getElementById("ct-status");
+        const btnText = document.getElementById("ct-btxt");
+        const btn = document.getElementById("ct-send");
 
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
-          const name = document.getElementById("cf-n").value.trim();
-          const email = document.getElementById("cf-e").value.trim();
+
+          const name = document.getElementById("ct-name").value.trim();
+          const email = document.getElementById("ct-email").value.trim();
           const subject =
-            document.getElementById("cf-s").value.trim() || "Portfolio Inquiry";
-          const message = document.getElementById("cf-m").value.trim();
+            document.getElementById("ct-subject").value.trim() ||
+            "Portfolio Inquiry";
+          const message = document.getElementById("ct-message").value.trim();
 
           if (!name || !email || !message) {
             status.innerHTML =
@@ -934,31 +978,569 @@
             return;
           }
 
-          btnText.textContent = "Sending...";
-          status.innerHTML = "";
-          const btn = form.querySelector('button[type="submit"]');
           btn.disabled = true;
+          btnText.textContent = "Sending...";
+          status.innerHTML =
+            '<span style="color:var(--text2);">⏳ Sending your message...</span>';
 
           try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            const templateParams = {
+              from_name: name,
+              from_email: email,
+              subject: subject,
+              message: message,
+              to_email: "tophereballo13@gmail.com",
+            };
+
+            await emailjs.send(
+              EMAILJS.serviceId,
+              EMAILJS.templateId,
+              templateParams,
+            );
+
             status.innerHTML =
               '<span style="color:#4ade80;"> Message sent successfully! I\'ll get back to you within 24 hours.</span>';
             form.reset();
-          } catch (err) {
+          } catch (error) {
+            console.error("EmailJS error:", error);
             status.innerHTML =
-              '<span style="color:#f87171;"> Something went wrong. Please try again.</span>';
+              '<span style="color:#f87171;"> Something went wrong. Please try again or email me directly at tophereballo13@gmail.com</span>';
           } finally {
-            btnText.textContent = "Send Message";
             btn.disabled = false;
+            btnText.textContent = "Send Message";
           }
         });
       })();
 
-      // ─── FOOTER YEAR ───
+      // ================================================================
+      //  PROJECT ONBOARDING — Full 13-step system with EmailJS
+      // ================================================================
+      let currentStep = 1;
+      const totalSteps = 13;
+      const onboardOverlay = document.getElementById("onboardOverlay");
+      const onboardModal = document.getElementById("onboardModal");
+      const stepDots = document.querySelectorAll("#onboardProgress .step-dot");
+      const stepLabel = document.getElementById("onboardStepLabel");
+      const prevBtn = document.getElementById("o-prev");
+      const nextBtn = document.getElementById("o-next");
+      const submitBtn = document.getElementById("o-submit");
+      const loadingDiv = document.getElementById("onboardLoading");
+      const successDiv = document.getElementById("onboardSuccess");
+      const navDiv = document.getElementById("onboardNav");
+
+      function openOnboarding() {
+        onboardOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+        currentStep = 1;
+        showStep(currentStep);
+      }
+
+      function closeOnboarding() {
+        onboardOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function resetOnboarding() {
+        // Reset all steps to initial state
+        document
+          .querySelectorAll(
+            ".onboard-step input, .onboard-step textarea, .onboard-step select",
+          )
+          .forEach((el) => {
+            if (el.type === "checkbox") el.checked = false;
+            else if (el.type === "file") el.value = "";
+            else el.value = "";
+          });
+        document
+          .querySelectorAll(".feature-grid label")
+          .forEach((l) => l.classList.remove("checked"));
+        document
+          .querySelectorAll(".feature-grid input[type='checkbox']")
+          .forEach((c) => (c.checked = false));
+        document.getElementById("filePreviews").innerHTML = "";
+        document.getElementById("descCount").textContent = "0";
+        loadingDiv.classList.remove("active");
+        successDiv.classList.remove("active");
+        navDiv.style.display = "flex";
+        currentStep = 1;
+        showStep(currentStep);
+        // Scroll to top of modal
+        onboardModal.scrollTop = 0;
+      }
+
+      function showStep(step) {
+        // Hide all steps
+        document
+          .querySelectorAll(".onboard-step")
+          .forEach((el) => el.classList.remove("active"));
+        // Show current
+        const current = document.querySelector(
+          `.onboard-step[data-step="${step}"]`,
+        );
+        if (current) current.classList.add("active");
+
+        // Update dots
+        stepDots.forEach((dot, i) => {
+          dot.classList.remove("active", "done");
+          if (i < step - 1) dot.classList.add("done");
+          else if (i === step - 1) dot.classList.add("active");
+        });
+
+        // Update label
+        const labels = [
+          "Personal Information",
+          "Project Information",
+          "Project Description",
+          "Project Goals",
+          "Features Needed",
+          "Design Preference",
+          "Budget",
+          "Deadline",
+          "References",
+          "File Upload",
+          "Communication",
+          "Additional Notes",
+          "Agreement",
+        ];
+        stepLabel.textContent = `Step ${step} of ${totalSteps} · ${labels[step - 1] || ""}`;
+
+        // Buttons
+        prevBtn.style.display = step === 1 ? "none" : "inline-flex";
+        if (step === totalSteps) {
+          nextBtn.style.display = "none";
+          submitBtn.style.display = "inline-flex";
+        } else {
+          nextBtn.style.display = "inline-flex";
+          submitBtn.style.display = "none";
+        }
+
+        // Scroll to top of modal
+        onboardModal.scrollTop = 0;
+
+        // Update description char count
+        if (step === 3) updateDescCount();
+      }
+
+      function nextStep() {
+        if (!validateStep(currentStep)) return;
+        if (currentStep < totalSteps) {
+          currentStep++;
+          showStep(currentStep);
+        }
+      }
+
+      function prevStep() {
+        if (currentStep > 1) {
+          currentStep--;
+          showStep(currentStep);
+        }
+      }
+
+      function validateStep(step) {
+        // Step 1: Personal Info
+        if (step === 1) {
+          const first = document.getElementById("o-first").value.trim();
+          const last = document.getElementById("o-last").value.trim();
+          const email = document.getElementById("o-email").value.trim();
+          const phone = document.getElementById("o-phone").value.trim();
+          const country = document.getElementById("o-country").value.trim();
+          const city = document.getElementById("o-city").value.trim();
+          if (!first) {
+            alert("Please enter your first name.");
+            return false;
+          }
+          if (!last) {
+            alert("Please enter your last name.");
+            return false;
+          }
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+          }
+          if (!phone) {
+            alert("Please enter your phone number.");
+            return false;
+          }
+          if (!country) {
+            alert("Please enter your country.");
+            return false;
+          }
+          if (!city) {
+            alert("Please enter your city.");
+            return false;
+          }
+          return true;
+        }
+        // Step 2: Project Info
+        if (step === 2) {
+          const title = document.getElementById("o-title").value.trim();
+          const type = document.getElementById("o-type").value;
+          if (!title) {
+            alert("Please enter a project title.");
+            return false;
+          }
+          if (!type) {
+            alert("Please select a project type.");
+            return false;
+          }
+          return true;
+        }
+        // Step 3: Description
+        if (step === 3) {
+          const desc = document.getElementById("o-desc").value.trim();
+          if (desc.length < 100) {
+            alert(
+              "Please enter at least 100 characters for the project description.",
+            );
+            return false;
+          }
+          return true;
+        }
+        // Step 4: Goals
+        if (step === 4) {
+          const goals = document.getElementById("o-goals").value.trim();
+          if (!goals) {
+            alert("Please enter your project goals.");
+            return false;
+          }
+          return true;
+        }
+        // Step 5: Features — optional, no validation needed
+        if (step === 5) return true;
+        // Step 6: Design
+        if (step === 6) {
+          const design = document.getElementById("o-design").value;
+          if (!design) {
+            alert("Please select a design preference.");
+            return false;
+          }
+          return true;
+        }
+        // Step 7: Budget
+        if (step === 7) {
+          const budget = document.getElementById("o-budget").value;
+          if (!budget) {
+            alert("Please select a budget range.");
+            return false;
+          }
+          return true;
+        }
+        // Step 8: Deadline
+        if (step === 8) {
+          const deadline = document.getElementById("o-deadline").value;
+          if (!deadline) {
+            alert("Please select a deadline.");
+            return false;
+          }
+          return true;
+        }
+        // Step 9: References — optional
+        if (step === 9) return true;
+        // Step 10: File upload — optional
+        if (step === 10) return true;
+        // Step 11: Communication
+        if (step === 11) {
+          const comm = document.getElementById("o-comm").value;
+          if (!comm) {
+            alert("Please select a preferred communication method.");
+            return false;
+          }
+          return true;
+        }
+        // Step 12: Notes — optional
+        if (step === 12) return true;
+        // Step 13: Agreement
+        if (step === 13) {
+          const agree = document.getElementById("o-agree").checked;
+          if (!agree) {
+            alert("Please agree to the terms before submitting.");
+            return false;
+          }
+          return true;
+        }
+        return true;
+      }
+
+      // ── Description character count ──
+      function updateDescCount() {
+        const el = document.getElementById("o-desc");
+        const count = document.getElementById("descCount");
+        if (el && count) {
+          count.textContent = el.value.length;
+          el.addEventListener("input", () => {
+            count.textContent = el.value.length;
+          });
+        }
+      }
+
+      // ── File preview ──
+      document
+        .getElementById("o-files")
+        ?.addEventListener("change", function (e) {
+          const container = document.getElementById("filePreviews");
+          container.innerHTML = "";
+          const files = Array.from(this.files);
+          files.forEach((file) => {
+            const badge = document.createElement("span");
+            badge.style.cssText =
+              "background:var(--glass2);padding:4px 12px;border-radius:100px;font-size:0.7rem;border:1px solid var(--border);color:var(--text2);";
+            badge.textContent = `📎 ${file.name} (${(file.size / 1024).toFixed(1)}KB)`;
+            container.appendChild(badge);
+          });
+          if (files.length === 0) container.innerHTML = "";
+        });
+
+      // ── Feature checkboxes toggle ──
+      document
+        .querySelectorAll(".feature-grid input[type='checkbox']")
+        .forEach((cb) => {
+          cb.addEventListener("change", function () {
+            this.closest("label").classList.toggle("checked", this.checked);
+          });
+        });
+
+      // ── Submit onboarding ──
+      async function submitOnboard() {
+        // Validate step 13
+        if (!validateStep(13)) return;
+
+        // Collect all data
+        const data = {
+          firstName: document.getElementById("o-first").value.trim(),
+          lastName: document.getElementById("o-last").value.trim(),
+          company: document.getElementById("o-company").value.trim(),
+          email: document.getElementById("o-email").value.trim(),
+          phone: document.getElementById("o-phone").value.trim(),
+          country: document.getElementById("o-country").value.trim(),
+          city: document.getElementById("o-city").value.trim(),
+          timezone:
+            document.getElementById("o-timezone").value.trim() ||
+            "Not specified",
+          projectTitle: document.getElementById("o-title").value.trim(),
+          projectType: document.getElementById("o-type").value,
+          description: document.getElementById("o-desc").value.trim(),
+          goals: document.getElementById("o-goals").value.trim(),
+          features: Array.from(
+            document.querySelectorAll(
+              ".feature-grid input[type='checkbox']:checked",
+            ),
+          ).map((el) => el.value),
+          customFeatures: document
+            .getElementById("o-custom-features")
+            .value.trim(),
+          design: document.getElementById("o-design").value,
+          budget: document.getElementById("o-budget").value,
+          deadline: document.getElementById("o-deadline").value,
+          deadlineDate:
+            document.getElementById("o-deadline-date").value || "Not specified",
+          references:
+            document.getElementById("o-refs").value.trim() || "None provided",
+          communication: document.getElementById("o-comm").value,
+          notes: document.getElementById("o-notes").value.trim() || "None",
+          files:
+            Array.from(document.getElementById("o-files").files)
+              .map((f) => f.name)
+              .join(", ") || "No files attached",
+        };
+
+        // Show loading
+        navDiv.style.display = "none";
+        loadingDiv.classList.add("active");
+        const loadText = document.getElementById("loadText");
+        const loadSteps = document.getElementById("loadSteps");
+        const loadMessages = [
+          "Preparing your request...",
+          "Uploading files...",
+          "Sending inquiry...",
+          "Almost done...",
+        ];
+        let msgIdx = 0;
+        const msgInterval = setInterval(() => {
+          msgIdx = (msgIdx + 1) % loadMessages.length;
+          loadText.textContent = loadMessages[msgIdx];
+          if (msgIdx === 3) {
+            loadSteps.textContent = "Finalizing your submission...";
+          }
+        }, 1200);
+
+        try {
+          // Build email body for the admin (you)
+          const featureList = data.features.length
+            ? data.features.map((f) => `✔ ${f}`).join("\n")
+            : "None selected";
+          const emailBody = `
+        NEW PROJECT REQUEST
+
+        CLIENT INFORMATION
+        -------------------------------
+        FIRST NAME: ${data.firstName}
+        LAST NAME: ${data.lastName}
+        COMPANY: ${data.company || "N/A"}
+        EMAIL: ${data.email}
+        PHONE: ${data.phone}
+        COUNTRY: ${data.country}
+        CITY: ${data.city}
+        TIMEZONE: ${data.timezone}
+
+        PROJECT INFORMATION
+        -------------------------------
+        PROJECT TITLE: ${data.projectTitle}
+        PROJECT TYPE: ${data.projectType}
+
+        PROJECT DESCRIPTION
+        -------------------------------
+        ${data.description}
+
+        GOALS
+        -------------------------------
+        ${data.goals}
+
+        FEATURES
+        -------------------------------
+        ${featureList}
+        ${data.customFeatures ? `\nCUSTOM FEATURES: ${data.customFeatures}` : ""}
+
+        DESIGN STYLE
+        -------------------------------
+        ${data.design}
+
+        BUDGET
+        -------------------------------
+        ${data.budget}
+
+        DEADLINE
+        -------------------------------
+        ${data.deadline} ${data.deadlineDate !== "Not specified" ? `(Date: ${data.deadlineDate})` : ""}
+
+        REFERENCES
+        -------------------------------
+        ${data.references}
+
+        FILES ATTACHED
+        -------------------------------
+        ${data.files}
+
+        PREFERRED COMMUNICATION
+        -------------------------------
+        ${data.communication}
+
+        ADDITIONAL NOTES
+        -------------------------------
+        ${data.notes}
+
+        SUBMITTED: ${new Date().toLocaleString()}
+        `;
+
+          // Send to admin (you)
+          const adminParams = {
+            from_name: data.firstName + " " + data.lastName,
+            from_email: data.email,
+            subject: `NEW PROJECT REQUEST — ${data.projectTitle}`,
+            message: emailBody,
+            to_email: "tophereballo13@gmail.com",
+          };
+
+          await emailjs.send(
+            EMAILJS.serviceId,
+            EMAILJS.templateId,
+            adminParams,
+          );
+
+          // Send auto-reply to client
+          const replyBody = `
+        THANK YOU FOR YOUR PROJECT INQUIRY!
+
+        Hi ${data.firstName},
+
+        Thank you for reaching out! I'm excited to learn about your project.
+
+        I've successfully received your project request and will carefully review all the details you provided.
+
+        You can expect a response within 24 hours regarding:
+        • Project feasibility
+        • Estimated timeline
+        • Budget discussion
+        • Recommended approach
+        • Next steps
+
+        If I need additional information, I'll contact you using your preferred communication method.
+
+        Thank you for trusting me with your project.
+
+        Best regards,
+        Christopher Eballo
+        Front-End Developer | System Developer | UI/UX Designer
+
+        Portfolio: https://eballodev.github.io/Portfolio-/
+        GitHub: https://github.com/EballoDev
+        LinkedIn: https://www.linkedin.com/in/christopher-eballo-26360a3a3/
+        Email: tophereballo13@gmail.com
+        Phone: +63 960 255 8385
+        `;
+
+          const replyParams = {
+            from_name: "Christopher Eballo",
+            from_email: "tophereballo13@gmail.com",
+            subject: "Thank You for Your Project Inquiry!",
+            message: replyBody,
+            to_email: data.email,
+          };
+
+          await emailjs.send(
+            EMAILJS.serviceId,
+            EMAILJS.templateId,
+            replyParams,
+          );
+
+          // Success!
+          clearInterval(msgInterval);
+          loadingDiv.classList.remove("active");
+          successDiv.classList.add("active");
+        } catch (error) {
+          console.error("Onboarding EmailJS error:", error);
+          clearInterval(msgInterval);
+          loadingDiv.classList.remove("active");
+          navDiv.style.display = "flex";
+          alert(
+            " There was an error submitting your project request. Please try again or email me directly at tophereballo13@gmail.com",
+          );
+        }
+      }
+
+      // ── Keyboard navigation ──
+      document.addEventListener("keydown", (e) => {
+        if (!onboardOverlay.classList.contains("open")) return;
+        if (e.key === "Escape") closeOnboarding();
+        if (e.key === "Enter") {
+          // Only if not in a textarea
+          if (e.target.tagName !== "TEXTAREA") {
+            if (currentStep === totalSteps) submitOnboard();
+            else nextStep();
+          }
+        }
+      });
+
+      // ── Global exposure ──
+      window.openOnboarding = openOnboarding;
+      window.closeOnboarding = closeOnboarding;
+      window.resetOnboarding = resetOnboarding;
+      window.nextStep = nextStep;
+      window.prevStep = prevStep;
+      window.submitOnboard = submitOnboard;
+
+      // ================================================================
+      //  FOOTER YEAR
+      // ================================================================
       document.querySelector(".ft-copy").textContent =
         "© " +
         new Date().getFullYear() +
         " Christopher Eballo. All rights reserved.";
 
-      console.log("Christopher Eballo Portfolio loaded successfully!");
-      console.log("AI Assistant is ready — ask me anything about Christopher!");
+      console.log(" Christopher Eballo Portfolio loaded successfully!");
+      console.log(" EmailJS configured with service:", EMAILJS.serviceId);
+      console.log(
+        " AI Assistant is ready — ask me anything about Christopher!",
+      );
+      console.log(
+        " Project Onboarding system ready — 13 steps to start your project!",
+      );
