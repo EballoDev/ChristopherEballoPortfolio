@@ -6,17 +6,29 @@
     <title>Christopher Eballo · Web Developer & Designer</title>
     <meta
       name="description"
-      content="Portfolio of Christopher Eballo — Web Developer, UI Designer & Software Engineer.">
+      content="Portfolio of Christopher Eballo — Web Developer, UI Designer & Software Engineer."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link rel="icon" href="images/BLACK LOGO.png" type="image/jpeg" />
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+      
+    </style>
   </head>
   <body>
     <!-- ═══ SCROLL PROGRESS ═══ -->
@@ -164,6 +176,9 @@
             "
           >
             <i class="fas fa-paper-plane"></i> Get in Touch
+          </button>
+          <button class="btn btn-start" onclick="openOnboarding()">
+            <i class="fas fa-rocket"></i> Start Your Project
           </button>
           <a href="images/EBALLO_FINAL_REESUME.pdf" download class="btn btn-o"
             ><i class="fas fa-download"></i> Resume</a
@@ -674,14 +689,16 @@
       </div>
     </section>
 
-    <!-- ═══ CONTACT ═══ -->
+    <!-- ════════════════════════════════════════════════════════════════
+    CONTACT — "Get in Touch" (simple contact form with EmailJS)
+    ════════════════════════════════════════════════════════════════ -->
     <section id="contact">
       <div class="rv" style="margin-bottom: 52px">
         <span class="s-label">Let's Connect</span>
         <h2 class="s-title">Get in <em>Touch</em></h2>
         <div class="s-line"></div>
         <p class="s-sub">
-          Have a project in mind? Let's build something remarkable together.
+          Have a question or just want to say hello? Reach out anytime.
         </p>
       </div>
       <div class="contact-wrap">
@@ -726,22 +743,22 @@
           >
         </div>
         <div class="cf-wrap rv-r">
-          <form id="cf" novalidate>
+          <form id="contactForm" novalidate>
             <div class="cf-row">
               <div class="fg">
-                <label>Name</label
+                <label>Name *</label
                 ><input
                   type="text"
-                  id="cf-n"
+                  id="ct-name"
                   placeholder="Your name"
                   required
                 />
               </div>
               <div class="fg">
-                <label>Email</label
+                <label>Email *</label
                 ><input
                   type="email"
-                  id="cf-e"
+                  id="ct-email"
                   placeholder="you@email.com"
                   required
                 />
@@ -749,29 +766,533 @@
             </div>
             <div class="fg">
               <label>Subject</label
-              ><input type="text" id="cf-s" placeholder="Project inquiry" />
+              ><input
+                type="text"
+                id="ct-subject"
+                placeholder="What's this about?"
+              />
             </div>
             <div class="fg">
-              <label>Message</label
+              <label>Message *</label
               ><textarea
-                id="cf-m"
-                placeholder="Tell me about your project..."
+                id="ct-message"
+                placeholder="Tell me what's on your mind..."
                 required
               ></textarea>
             </div>
-            <button
-              type="submit"
-              class="btn btn-w"
-              style="width: 100%; justify-content: center"
-            >
-              <i class="fas fa-paper-plane"></i>
-              <span id="cf-btxt">Send Message</span>
-            </button>
-            <div id="cf-status"></div>
+            <div class="cf-submit-row">
+              <button type="submit" class="btn btn-w" id="ct-send">
+                <i class="fas fa-paper-plane"></i>
+                <span id="ct-btxt">Send Message</span>
+              </button>
+              <button
+                type="button"
+                class="btn btn-start"
+                onclick="openOnboarding()"
+              >
+                <i class="fas fa-rocket"></i> Start a Project
+              </button>
+            </div>
+            <div id="ct-status"></div>
           </form>
         </div>
       </div>
     </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+    PROJECT ONBOARDING — Full-page Modal (13 steps)
+    ════════════════════════════════════════════════════════════════ -->
+    <div class="onboard-overlay" id="onboardOverlay">
+      <div class="onboard-modal" id="onboardModal">
+        <button class="onboard-close" onclick="closeOnboarding()">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="onboard-header">
+          <h2>Start Your <em>Project</em></h2>
+          <p>
+            Fill in the details below and I'll get back to you within 24 hours.
+          </p>
+        </div>
+
+        <!-- Progress -->
+        <div class="onboard-progress" id="onboardProgress">
+          <span class="step-dot active"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+          <span class="step-dot"></span>
+        </div>
+        <div class="onboard-step-label" id="onboardStepLabel">
+          Step 1 of 13 · Personal Information
+        </div>
+
+        <!-- ===== STEP 1: Personal Info ===== -->
+        <div class="onboard-step active" data-step="1">
+          <h3>Personal Information</h3>
+          <p class="step-desc">
+            Tell me about yourself so I know who I'm working with.
+          </p>
+          <div class="fg">
+            <label>First Name *</label
+            ><input type="text" id="o-first" placeholder="John" required />
+          </div>
+          <div class="fg">
+            <label>Last Name *</label
+            ><input type="text" id="o-last" placeholder="Doe" required />
+          </div>
+          <div class="fg">
+            <label>Company Name</label
+            ><input
+              type="text"
+              id="o-company"
+              placeholder="Your company (optional)"
+            />
+          </div>
+          <div class="fg">
+            <label>Email Address *</label
+            ><input
+              type="email"
+              id="o-email"
+              placeholder="john@example.com"
+              required
+            />
+          </div>
+          <div class="fg">
+            <label>Phone Number *</label
+            ><input
+              type="tel"
+              id="o-phone"
+              placeholder="+63 912 345 6789"
+              required
+            />
+          </div>
+          <div class="fg">
+            <label>Country *</label
+            ><input
+              type="text"
+              id="o-country"
+              placeholder="Philippines"
+              required
+            />
+          </div>
+          <div class="fg">
+            <label>City *</label
+            ><input type="text" id="o-city" placeholder="Manila" required />
+          </div>
+          <div class="fg">
+            <label>Time Zone</label
+            ><input
+              type="text"
+              id="o-timezone"
+              placeholder="Asia/Manila (UTC+8)"
+            />
+          </div>
+        </div>
+
+        <!-- ===== STEP 2: Project Info ===== -->
+        <div class="onboard-step" data-step="2">
+          <h3>Project Information</h3>
+          <p class="step-desc">
+            What kind of project are we building together?
+          </p>
+          <div class="fg">
+            <label>Project Title *</label
+            ><input
+              type="text"
+              id="o-title"
+              placeholder="My Awesome Project"
+              required
+            />
+          </div>
+          <div class="fg">
+            <label>Project Type *</label>
+            <select id="o-type" required>
+              <option value="">— Select —</option>
+              <option>Portfolio Website</option>
+              <option>Business Website</option>
+              <option>Landing Page</option>
+              <option>E-Commerce Website</option>
+              <option>School Management System</option>
+              <option>Library Management System</option>
+              <option>POS System</option>
+              <option>Inventory System</option>
+              <option>HR System</option>
+              <option>Appointment System</option>
+              <option>Hotel Management System</option>
+              <option>Restaurant System</option>
+              <option>Healthcare System</option>
+              <option>Mobile Application</option>
+              <option>Desktop Application</option>
+              <option>AI Chatbot</option>
+              <option>Dashboard</option>
+              <option>SaaS Platform</option>
+              <option>Custom Web Application</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== STEP 3: Description ===== -->
+        <div class="onboard-step" data-step="3">
+          <h3>Project Description</h3>
+          <p class="step-desc">Tell me everything about your project.</p>
+          <div class="fg">
+            <label>Description * (min. 100 characters)</label>
+            <textarea
+              id="o-desc"
+              placeholder="What problem are you solving? Who are your users? What is the main purpose?"
+              required
+            ></textarea>
+            <div class="char-count">
+              <span id="descCount">0</span> / 100 characters
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== STEP 4: Goals ===== -->
+        <div class="onboard-step" data-step="4">
+          <h3>Project Goals</h3>
+          <p class="step-desc">What do you want this project to achieve?</p>
+          <div class="fg">
+            <label>Goals *</label>
+            <textarea
+              id="o-goals"
+              placeholder="e.g. Increase sales, automate business, improve workflow, build online presence..."
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- ===== STEP 5: Features ===== -->
+        <div class="onboard-step" data-step="5">
+          <h3>Features Needed</h3>
+          <p class="step-desc">
+            Select the features you'd like included (check all that apply).
+          </p>
+          <div class="feature-grid" id="featureGrid">
+            <label><input type="checkbox" value="Login" /> Login</label>
+            <label
+              ><input type="checkbox" value="Registration" />
+              Registration</label
+            >
+            <label
+              ><input type="checkbox" value="Forgot Password" /> Forgot
+              Password</label
+            >
+            <label
+              ><input type="checkbox" value="Admin Dashboard" /> Admin
+              Dashboard</label
+            >
+            <label
+              ><input type="checkbox" value="User Management" /> User
+              Management</label
+            >
+            <label
+              ><input type="checkbox" value="Roles & Permissions" /> Roles &
+              Permissions</label
+            >
+            <label><input type="checkbox" value="CRUD" /> CRUD</label>
+            <label><input type="checkbox" value="Reports" /> Reports</label>
+            <label><input type="checkbox" value="Analytics" /> Analytics</label>
+            <label><input type="checkbox" value="Charts" /> Charts</label>
+            <label><input type="checkbox" value="GCash" /> GCash</label>
+            <label><input type="checkbox" value="Maya" /> Maya</label>
+            <label><input type="checkbox" value="PayPal" /> PayPal</label>
+            <label><input type="checkbox" value="Stripe" /> Stripe</label>
+            <label
+              ><input type="checkbox" value="Email Notifications" /> Email
+              Notifications</label
+            >
+            <label><input type="checkbox" value="SMS" /> SMS</label>
+            <label><input type="checkbox" value="Chat" /> Chat</label>
+            <label
+              ><input type="checkbox" value="AI Chatbot" /> AI Chatbot</label
+            >
+            <label
+              ><input type="checkbox" value="Reservations" />
+              Reservations</label
+            >
+            <label
+              ><input type="checkbox" value="Scheduling" /> Scheduling</label
+            >
+            <label><input type="checkbox" value="Calendar" /> Calendar</label>
+            <label><input type="checkbox" value="Inventory" /> Inventory</label>
+            <label
+              ><input type="checkbox" value="Attendance" /> Attendance</label
+            >
+            <label><input type="checkbox" value="QR Code" /> QR Code</label>
+            <label><input type="checkbox" value="Barcode" /> Barcode</label>
+            <label
+              ><input type="checkbox" value="Multi-Language" />
+              Multi-Language</label
+            >
+            <label
+              ><input type="checkbox" value="Responsive Design" /> Responsive
+              Design</label
+            >
+            <label><input type="checkbox" value="Dark Mode" /> Dark Mode</label>
+            <label
+              ><input type="checkbox" value="API Integration" /> API
+              Integration</label
+            >
+            <label
+              ><input type="checkbox" value="Cloud Database" /> Cloud
+              Database</label
+            >
+            <label><input type="checkbox" value="Search" /> Search</label>
+            <label
+              ><input type="checkbox" value="Export PDF" /> Export PDF</label
+            >
+            <label
+              ><input type="checkbox" value="Excel Export" /> Excel
+              Export</label
+            >
+            <label
+              ><input type="checkbox" value="File Upload" /> File Upload</label
+            >
+          </div>
+          <div class="fg" style="margin-top: 12px">
+            <label>Custom Features</label>
+            <input
+              type="text"
+              id="o-custom-features"
+              placeholder="Any other features not listed?"
+            />
+          </div>
+        </div>
+
+        <!-- ===== STEP 6: Design Preference ===== -->
+        <div class="onboard-step" data-step="6">
+          <h3>Design Preference</h3>
+          <p class="step-desc">What style resonates with your brand?</p>
+          <div class="fg">
+            <label>Design Style *</label>
+            <select id="o-design" required>
+              <option value="">— Select —</option>
+              <option>Modern</option>
+              <option>Minimalist</option>
+              <option>Corporate</option>
+              <option>Luxury</option>
+              <option>Dark Theme</option>
+              <option>Creative</option>
+              <option>Apple Style</option>
+              <option>Glassmorphism</option>
+              <option>Neumorphism</option>
+              <option>Custom Design</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== STEP 7: Budget ===== -->
+        <div class="onboard-step" data-step="7">
+          <h3>Budget</h3>
+          <p class="step-desc">
+            What's your estimated budget for this project?
+          </p>
+          <div class="fg">
+            <label>Budget Range *</label>
+            <select id="o-budget" required>
+              <option value="">— Select —</option>
+              <option>Under ₱10,000</option>
+              <option>₱10,000–₱30,000</option>
+              <option>₱30,000–₱50,000</option>
+              <option>₱50,000–₱100,000</option>
+              <option>₱100,000+</option>
+              <option>Let's Discuss</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== STEP 8: Deadline ===== -->
+        <div class="onboard-step" data-step="8">
+          <h3>Deadline</h3>
+          <p class="step-desc">When do you need this project delivered?</p>
+          <div class="fg">
+            <label>Timeline *</label>
+            <select id="o-deadline" required>
+              <option value="">— Select —</option>
+              <option>ASAP</option>
+              <option>1 Week</option>
+              <option>2 Weeks</option>
+              <option>1 Month</option>
+              <option>2 Months</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Specific Date (optional)</label
+            ><input type="date" id="o-deadline-date" />
+          </div>
+        </div>
+
+        <!-- ===== STEP 9: References ===== -->
+        <div class="onboard-step" data-step="9">
+          <h3>References</h3>
+          <p class="step-desc">Share any references that inspire you.</p>
+          <div class="fg">
+            <label>Reference Links</label>
+            <textarea
+              id="o-refs"
+              placeholder="Paste any website URLs, Pinterest, Behance, Dribbble, Figma, or Google Drive links..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- ===== STEP 10: File Upload ===== -->
+        <div class="onboard-step" data-step="10">
+          <h3>File Upload</h3>
+          <p class="step-desc">Attach any relevant files (max 50MB).</p>
+          <div class="fg">
+            <label>Upload Files</label>
+            <input
+              type="file"
+              id="o-files"
+              multiple
+              accept=".pdf,.docx,.zip,.png,.jpg,.jpeg,.gif,.svg,.webp"
+            />
+            <div
+              style="font-size: 0.75rem; color: var(--text3); margin-top: 4px"
+            >
+              Supports: PDF, DOCX, ZIP, images (PNG, JPG, SVG, WEBP)
+            </div>
+            <div
+              id="filePreviews"
+              style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px"
+            ></div>
+          </div>
+        </div>
+
+        <!-- ===== STEP 11: Communication ===== -->
+        <div class="onboard-step" data-step="11">
+          <h3>Preferred Communication</h3>
+          <p class="step-desc">How would you like to stay in touch?</p>
+          <div class="fg">
+            <label>Preferred Method *</label>
+            <select id="o-comm" required>
+              <option value="">— Select —</option>
+              <option>Email</option>
+              <option>Messenger</option>
+              <option>WhatsApp</option>
+              <option>Discord</option>
+              <option>Telegram</option>
+              <option>Zoom</option>
+              <option>Google Meet</option>
+              <option>Phone Call</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ===== STEP 12: Additional Notes ===== -->
+        <div class="onboard-step" data-step="12">
+          <h3>Additional Notes</h3>
+          <p class="step-desc">Anything else you'd like me to know?</p>
+          <div class="fg">
+            <label>Notes</label>
+            <textarea
+              id="o-notes"
+              placeholder="Any extra details, context, or special requests..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- ===== STEP 13: Agreement ===== -->
+        <div class="onboard-step" data-step="13">
+          <h3>Agreement</h3>
+          <p class="step-desc">Please confirm before submitting.</p>
+          <div
+            class="fg"
+            style="
+              display: flex;
+              align-items: flex-start;
+              gap: 10px;
+              margin-top: 8px;
+            "
+          >
+            <input
+              type="checkbox"
+              id="o-agree"
+              style="
+                width: 18px;
+                height: 18px;
+                margin-top: 3px;
+                accent-color: var(--accent);
+                flex-shrink: 0;
+              "
+            />
+            <label
+              for="o-agree"
+              style="font-size: 0.9rem; color: var(--text2); cursor: pointer"
+            >
+              I understand this submission is only a project inquiry and not yet
+              a legally binding contract. *
+            </label>
+          </div>
+        </div>
+
+        <!-- ===== LOADING ===== -->
+        <div class="onboard-loading" id="onboardLoading">
+          <div class="spinner"></div>
+          <div class="load-text" id="loadText">Preparing your request...</div>
+          <div class="load-steps" id="loadSteps">
+            Please wait while we process your inquiry.
+          </div>
+        </div>
+
+        <!-- ===== SUCCESS ===== -->
+        <div class="onboard-success" id="onboardSuccess">
+          <div class="icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Project Request Sent Successfully! 🎉</h3>
+          <p>
+            Thank you for your interest. I've received your project inquiry and
+            will contact you within 24 hours. I look forward to working with
+            you!
+          </p>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
+            <button class="btn btn-w" onclick="closeOnboarding()">
+              <i class="fas fa-arrow-left"></i> Return to Portfolio
+            </button>
+            <button class="btn btn-o" onclick="resetOnboarding()">
+              <i class="fas fa-redo"></i> Submit Another
+            </button>
+          </div>
+        </div>
+
+        <!-- ===== NAVIGATION ===== -->
+        <div class="onboard-nav" id="onboardNav">
+          <button class="btn btn-o" id="o-prev" onclick="prevStep()">
+            <i class="fas fa-chevron-left"></i> Back
+          </button>
+          <span style="flex: 1"></span>
+          <button class="btn btn-w" id="o-next" onclick="nextStep()">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+          <button
+            class="btn btn-w"
+            id="o-submit"
+            onclick="submitOnboard()"
+            style="display: none"
+          >
+            <i class="fas fa-paper-plane"></i> Submit Project
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- ═══ FOOTER ═══ -->
     <footer>
@@ -825,8 +1346,8 @@
         </div>
         <div class="ai-msgs" id="ai-msgs">
           <div class="ai-m bot">
-            Hey! 👋 I'm Christopher's assistant. Ask me about his skills,
-            projects, or how to hire him!
+            Hey! I'm Christopher's assistant. Ask me about his skills, projects,
+            or how to hire him!
           </div>
         </div>
         <div class="ai-inp">
@@ -851,6 +1372,10 @@
       </div>
     </div>
 
-     <script src="script.js"></script>
+    <!-- ════════════════════════════════════════════════════════════════
+    SCRIPT — Full functionality with EmailJS integration
+    ════════════════════════════════════════════════════════════════ -->
+
+    <script src="script.js"></script>
   </body>
 </html>
